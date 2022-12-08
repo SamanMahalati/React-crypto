@@ -1,8 +1,13 @@
+import React from "react";
+
+//Components
+import Navbar from "./components/Navbar";
+
 const App = () => {
   return (
-    <div className="App">
-      app
-    </div>
+    <>
+      <Navbar />
+    </>
   );
 }
 
