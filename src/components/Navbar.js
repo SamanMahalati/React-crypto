@@ -38,6 +38,7 @@ const Navbar = () => {
         color: #fff;
         font-size: 16px;
         font-weight: 700;
+        cursor: pointer;
     `
 
     const NavBtnContainer = styled.div`
@@ -53,6 +54,8 @@ const Navbar = () => {
         font-weight: 700;
         background-color: #3671E9;
         color: #fff;
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 11.3115px 40px 0px;
     `
 
 
