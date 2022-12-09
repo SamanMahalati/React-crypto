@@ -1,4 +1,5 @@
 import axios from "axios"
+import swal from "sweetalert"
 
 const fetchCoinsRequest = () => {
     return {
@@ -30,6 +31,11 @@ const fetchCoins = () => {
             dispatch(fetchCoinsSuccess(coins))
         })
         .catch(error => {
+            swal({
+                title: "Network have a problem" ,
+                icon: "error" ,
+                text: "Please check your connection and retry later"
+            })
             const errorMsg = error.message;
             dispatch(fetchCoinsError(errorMsg))
         })
