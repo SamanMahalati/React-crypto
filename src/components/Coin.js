@@ -26,10 +26,11 @@ const Coin = ({ data }) => {
                 <h3>{data.market_cap_rank}</h3>
                 <h3><img src={data.image} alt="" /></h3>
                 <h3>{data.name}</h3>
-                <h3>${data.current_price.toLocaleString()}</h3>
-                <h3>{data.price_change_percentage_24h.toFixed(2)}  %</h3>
-                <h3>${data.total_volume.toLocaleString()}</h3>
-                <h3>${data.market_cap.toLocaleString()}</h3>
+                <h3>${data.current_price ? data.current_price.toLocaleString() : "?"}</h3>
+                <h3>{data.price_change_percentage_24h ? data.price_change_percentage_24h.toFixed(2) : "?"}
+                </h3>
+                <h3>${data.total_volume ? data.total_volume.toLocaleString() : "?"}</h3>
+                <h3>${data.market_cap ? data.market_cap.toLocaleString() : "?"}</h3>
             </BodyMenu>
         </>
     );

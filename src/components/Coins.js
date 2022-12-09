@@ -6,7 +6,6 @@ import "./CoinsPaginnation.css"
 //React Paginnatoin Library
 import ReactPaginate from "react-paginate"
 
-
 //Call all coin from api
 import { fetchCoins } from '../redux/Coin/coinAction';
 
@@ -88,16 +87,11 @@ const Coins = () => {
             <ReactPaginate 
             previousLabel={"Previous"}
             nextLabel={"Next"}
-            pageCount={8}
+            pageCount={260}
             onPageChange={pageClickHandler}
             containerClassName={"pagination"}
             pageClassName={"page-item"}
             />
-
-            <div>
-                <ul className='pagination' style={{backgroundColor: "#fff"}}>
-                </ul>
-            </div>
         </>
     );
 };
