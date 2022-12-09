@@ -21,11 +21,11 @@ const fetchCoinsError = error => {
     }
 }
 
-const fetchCoins = () => {
+const fetchCoins = (coinQty , coinPage) => {
     return (dispatch) => {
         dispatch(fetchCoinsRequest())
         const BASE_URL = "https://api.coingecko.com/api/v3/coins/"
-        axios.get(`${BASE_URL}markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false`)
+        axios.get(`${BASE_URL}markets?vs_currency=usd&order=market_cap_desc&per_page=${coinQty}&page=${coinPage}&sparkline=false`)
         .then(response => {
             const coins = response.data;
             dispatch(fetchCoinsSuccess(coins))

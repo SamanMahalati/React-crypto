@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
-
 import { useSelector, useDispatch } from 'react-redux';
 
+import "./CoinsPaginnation.css"
+
+//React Paginnatoin Library
+import ReactPaginate from "react-paginate"
+
+
+//Call all coin from api
 import { fetchCoins } from '../redux/Coin/coinAction';
 
 import styled from 'styled-components';
@@ -17,9 +23,8 @@ const Coins = () => {
     const coinState = useSelector(state => state.coinState)
 
     useEffect(() => {
-        dispatch(fetchCoins())
+        dispatch(fetchCoins(50, 1))
     }, [])
-
 
     const CoinSection = styled.section`
         display: flex;
@@ -55,26 +60,45 @@ const Coins = () => {
         box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
     `
 
+    const pageClickHandler = (data) => {
+        let currentPage = data.selected + 1
+        dispatch(fetchCoins(50, currentPage))
+    }
     return (
-        <CoinSection>
-            <HeadMenu>
-                <h3>#</h3>
-                <h3>Coin</h3>
-                <h3>Name</h3>
-                <h3>Price</h3>
-                <h3>24h</h3>
-                <h3>Volume</h3>
-                <h3>Mkt Cap</h3>
-            </HeadMenu>
-            {
-                coinState.loading ?
-                    <Loading/> :
-                    coinState.error ?
-                        <h1>Network have an problem try Later ....</h1>
-                        :
-                        coinState.coins.map(coinData => <Coin key={coinData.id} data={coinData} />)
-            }
-        </CoinSection>
+        <>
+            <CoinSection>
+                <HeadMenu>
+                    <h3>#</h3>
+                    <h3>Coin</h3>
+                    <h3>Name</h3>
+                    <h3>Price</h3>
+                    <h3>24h</h3>
+                    <h3>Volume</h3>
+                    <h3>Mkt Cap</h3>
+                </HeadMenu>
+                {
+                    coinState.loading ?
+                        <Loading /> :
+                        coinState.error ?
+                            <h1>Network have an problem try Later ....</h1>
+                            :
+                            coinState.coins.map(coinData => <Coin key={coinData.id} data={coinData} />)
+                }
+            </CoinSection>
+            <ReactPaginate 
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            pageCount={8}
+            onPageChange={pageClickHandler}
+            containerClassName={"pagination"}
+            pageClassName={"page-item"}
+            />
+
+            <div>
+                <ul className='pagination' style={{backgroundColor: "#fff"}}>
+                </ul>
+            </div>
+        </>
     );
 };
 
