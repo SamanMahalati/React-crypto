@@ -2,6 +2,9 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+//React Router Dom 
+import { Link } from "react-router-dom"
+
 const Coin = ({ data }) => {
 
     const BodyMenu = styled.div`
@@ -20,19 +23,25 @@ const Coin = ({ data }) => {
             width: 2.5rem;
         }
     `
+
+    const CoinSection = styled.div`
+        width: 100%;
+    `
     return (
-        <>
-            <BodyMenu>
-                <h3>{data.market_cap_rank}</h3>
-                <h3><img src={data.image} alt="" /></h3>
-                <h3>{data.name}</h3>
-                <h3>${data.current_price ? data.current_price.toLocaleString() : "?"}</h3>
-                <h3>{data.price_change_percentage_24h ? data.price_change_percentage_24h.toFixed(2) : "?"}
-                </h3>
-                <h3>${data.total_volume ? data.total_volume.toLocaleString() : "?"}</h3>
-                <h3>${data.market_cap ? data.market_cap.toLocaleString() : "?"}</h3>
-            </BodyMenu>
-        </>
+        <CoinSection>
+            <Link to={`/Coins/${data.id}`}>
+                <BodyMenu>
+                    <h3>{data.market_cap_rank}</h3>
+                    <h3><img src={data.image} alt="" /></h3>
+                    <h3>{data.name}</h3>
+                    <h3>${data.current_price ? data.current_price.toLocaleString() : "?"}</h3>
+                    <h3>{data.price_change_percentage_24h ? data.price_change_percentage_24h.toFixed(2) : "?"}
+                    </h3>
+                    <h3>${data.total_volume ? data.total_volume.toLocaleString() : "?"}</h3>
+                    <h3>${data.market_cap ? data.market_cap.toLocaleString() : "?"}</h3>
+                </BodyMenu>
+            </Link>
+        </CoinSection>
     );
 };
 

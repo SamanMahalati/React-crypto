@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from "styled-components"
 
+//React Router Dom
+import { Link } from 'react-router-dom';
+
 //images
 import Logo from "../images/Logo.png"
 
@@ -24,6 +27,10 @@ const Navbar = () => {
 
         li {
             cursor: pointer;
+        }
+        a {
+            color: #fff; 
+            text-decoration: none;
         }
     `
 
@@ -58,9 +65,6 @@ const Navbar = () => {
         box-shadow: rgba(0, 0, 0, 0.2) 0px 11.3115px 40px 0px;
     `
 
-
-
-
     return (
         <Menu>
             <LogoContainer>
@@ -69,10 +73,10 @@ const Navbar = () => {
             </LogoContainer>
 
             <Ul>
-                <li>Home</li>
-                <li>Coins</li>
-                <li>Blogs</li>
-                <li>About Us</li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/Coins">Coins</Link></li>
+                <li><Link to="/Blogs">Blogs</Link></li>
+                <li><Link to="/AboutUs">About Us</Link></li>
             </Ul>
             <NavBtnContainer>
                 <LoginBtn>Login</LoginBtn>

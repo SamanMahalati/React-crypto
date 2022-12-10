@@ -42,4 +42,4 @@ const fetchCoins = (coinQty , coinPage) => {
     }
 }
 
-export {fetchCoinsRequest , fetchCoinsSuccess , fetchCoinsError , fetchCoins}
+export {fetchCoinsRequest , fetchCoinsSuccess , fetchCoinsError , fetchCoins }
