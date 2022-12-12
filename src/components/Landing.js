@@ -6,23 +6,68 @@ import styled from 'styled-components';
 import Vector from "../images/Landing.png"
 import Arrow from "../images/icon/arrowRight.png"
 
-const Landing = () => {
-
-    const LandingContainer = styled.section`
+const LandingContainer = styled.section`
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 3rem 15rem;
+        @media screen and (max-width: 1800px) {
+            padding: 3rem 10rem;
+        }
+        @media screen and (max-width: 1600px) {
+            padding: 3rem 5rem;
+        }
+        @media screen and (max-width: 1600px) {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5rem;
+        }
+        @media screen and (max-width: 800px) {
+            padding: 3rem 2rem;
+        } 
+        @media screen and (max-width: 750px) {
+            font-size: 18px;
+        }
     `
 
-    const LandingVectorContainer = styled.div`
+const LandingVectorContainer = styled.div`
         img {
             max-width: 100%;
             min-width: 40rem;
         }
+        @media screen and (max-width: 1600px) {
+            img {
+                min-width: 60rem;
+            }
+        }
+        @media screen and (max-width: 1200px) {
+            img {
+                min-width: 50rem;
+            }
+        }
+        @media screen and (max-width: 960px) {
+            img {
+                min-width: 40rem;
+            }
+        }
+        @media screen and (max-width: 720px) {
+            img {
+                min-width: 30rem;
+            }
+        }
+        @media screen and (max-width: 560px) {
+            img {
+                min-width: 20rem;
+            }
+        }
+        @media screen and (max-width: 370px) {
+            img {
+                min-width: 15rem;
+            }
+        }
     `
 
-    const LandingTextContainer = styled.div`
+const LandingTextContainer = styled.div`
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -40,9 +85,45 @@ const Landing = () => {
             font-size: 15px;
             font-weight: 400;
         }
+        @media screen and (max-width: 1600px) {
+            align-items: center;
+            justify-content: center;
+            order: 1;
+            text-align: center;
+        }
+        @media screen and (max-width: 800px) {
+            h1 {
+            font-size: 50px;
+            line-height: 5rem;
+            } 
+        }
+        @media screen and (max-width: 540px) {
+            h1 {
+            font-size: 40px;
+            } 
+        }
+        @media screen and (max-width: 440px) {
+            h1 {
+            font-size: 35px;
+            text-align: left;
+            line-height: 4rem;
+            } 
+        }
+        @media screen and (max-width: 380px) {
+            h1 {
+            font-size: 30px;
+            text-align: left;
+            } 
+        }
+        @media screen and (max-width: 330px) {
+            h1 {
+            font-size: 30px;
+            text-align: center;
+            } 
+        }
     `
 
-    const StartBtnContainer = styled.div`
+const StartBtnContainer = styled.div`
         background-color: #3671E9;
         color: #fff;
         width: 11rem;
@@ -71,12 +152,14 @@ const Landing = () => {
         }
     `
 
+const Landing = () => {
+
     return (
         <LandingContainer>
 
             <LandingTextContainer>
-                <h1>Fastest & secure <br/> platform to invest <br/> in crypto</h1>
-                <h5>Buy and sell cryptocurrencies , trusted by 10M wallets <br/> with over $30 bilion in transaction.</h5>
+                <h1>Fastest & secure <br /> platform to invest <br /> in crypto</h1>
+                <h5>Buy and sell cryptocurrencies , trusted by 10M wallets <br /> with over $30 bilion in transaction.</h5>
                 <StartBtnContainer>
                     <button>Start Now</button>
                     <div>
