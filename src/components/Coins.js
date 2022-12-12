@@ -41,6 +41,12 @@ const Coins = () => {
             box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
             margin: 2rem 0;
         }
+        @media screen and (max-width: 540px){
+            padding: 5rem 1.5rem 0 1.5rem;
+        }
+        @media screen and (max-width: 360px){
+            padding: 5rem 0.5rem 0 0.5rem;
+        }
 `
 
     const HeadMenu = styled.div`
@@ -57,6 +63,10 @@ const Coins = () => {
         top: 0;
         font-size: 20px;
         box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+
+        @media screen and (max-width: 960px){
+            display: none;
+        }
     `
 
     const pageClickHandler = (data) => {
