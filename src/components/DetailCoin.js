@@ -11,6 +11,9 @@ import DOMPurify from "dompurify"
 //Loading Components
 import Loading from '../shared/Loading';
 
+//Components
+import CoinChart from './CoinChart';
+
 const DetailCoin = () => {
 
     const Container = styled.section`
@@ -149,7 +152,7 @@ const DetailCoin = () => {
                 setLoading(false)
             })
             .catch(error => {
-                loading(true)
+                setLoading(true)
             })
     }, [])
 
@@ -205,6 +208,8 @@ const DetailCoin = () => {
                             </Table>
                         </TableBox>
 
+                        <CoinChart/>
+
                         <PriceStatusBox>
                             <PriceStatus>
                                 <h2>24h Low</h2>
@@ -223,6 +228,7 @@ const DetailCoin = () => {
                                 <p>${coin.market_data.circulating_supply.toLocaleString()}</p>
                             </PriceStatus>
                         </PriceStatusBox>
+
 
                         <AboutTitle>About {coin.name} :</AboutTitle>
                         <AboutCoin dangerouslySetInnerHTML={{
