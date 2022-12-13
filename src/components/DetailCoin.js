@@ -29,6 +29,19 @@ const DetailCoin = () => {
             color: #fff;
             text-decoration: none;
         }
+        
+        @media screen and (max-width: 1820px) {
+            padding: 2rem 20rem;
+        }
+        @media screen and (max-width: 1510px) {
+            padding: 2rem 10rem;
+        }
+        @media screen and (max-width: 1200px) {
+            padding: 2rem 5rem;
+        }
+        @media screen and (max-width: 1010px) {
+            padding: 2rem;
+        }
     `
 
     const CoinNameBox = styled.div`
@@ -38,7 +51,9 @@ const DetailCoin = () => {
         font-size: 25px;
         border-radius: 1rem;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         h1 {
             font-weight: 800;
             font-size: 50px;
@@ -54,6 +69,11 @@ const DetailCoin = () => {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        @media screen and (max-width: 770px) {
+            flex-direction: column;
+            gap: 2rem;
+        }
     `
     const CoinContentLeft = styled.div`
         display: flex;
@@ -65,6 +85,13 @@ const DetailCoin = () => {
             text-align: center;
             border-radius: 0.5rem;
         }
+        
+        @media screen and (max-width: 360px) {
+            h4 {
+                font-size: 23px;
+            }
+        }
+
         `
     const CoinContentLeftRank = styled.div`
         display: flex;
@@ -77,12 +104,26 @@ const DetailCoin = () => {
             background-color: transparent;
             font-weight: 300;
         }
+
+        @media screen and (max-width: 360px) {
+        img {
+            padding: 0;
+        } 
+        flex-direction: column;
+        gap: 1.5rem;
+
+    }
     `
 
     const CoinCurrentPrice = styled.div`
         h4 {
             font-weight: 900;
             font-size: 45px;
+        }
+        @media screen and (max-width: 360px) {
+            h4 {
+                font-size: 30px;
+            }
         }
     `
 
@@ -106,6 +147,34 @@ const DetailCoin = () => {
         th , td {
             padding: 10px 30px;
         }
+
+    @media screen and (max-width: 920px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    tbody {
+        display: flex;
+        flex-direction: row;
+    }
+    tr {
+        display: flex;
+        flex-direction: column;
+    }
+    th , td {
+            padding: 10px 80px;
+    }
+}
+    @media screen and (max-width: 550px) {
+    th , td {
+            padding: 10px 40px;
+    }
+}
+    @media screen and (max-width: 370px) {
+    th , td {
+            padding: 10px 20px;
+    }
+}
+        
     `
 
     const PriceStatusBox = styled.div`
@@ -117,6 +186,9 @@ const DetailCoin = () => {
         padding: 1rem;
         border-radius: 1rem;
         box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+        @media screen and (max-width: 460px) {
+            grid-template-columns: 1fr;
+        }
     `
     const PriceStatus = styled.div`
         background-color: #404040;
@@ -125,7 +197,22 @@ const DetailCoin = () => {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
         box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+        p {
+            font-size: 20px;
+        }
+
+        @media screen and (max-width: 460px){
+            flex-direction: column;
+            h2 {
+                text-align: center;
+            }
+        }
+
+        
     `
     const AboutCoin = styled.h2`
         line-height: 3rem;
@@ -138,6 +225,9 @@ const DetailCoin = () => {
         padding: 4rem 0 0 0;
     `
 
+    const CoinContantLeftText = styled.div`
+        display: flex;
+    `
     const [coin, setCoin] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -170,11 +260,13 @@ const DetailCoin = () => {
                                 <h4>Rank #{coin.market_cap_rank}</h4>
                                 <CoinContentLeftRank>
                                     <img src={coin.image.small} />
-                                    (
-                                    <h4>{coin.symbol.toUpperCase()}</h4>
-                                    /
-                                    <h4>{coin.name}</h4>
-                                    )
+                                    <CoinContantLeftText>
+                                        (
+                                        <h4>{coin.symbol.toUpperCase()}</h4>
+                                        /
+                                        <h4>{coin.name}</h4>
+                                        )
+                                    </CoinContantLeftText>
                                 </CoinContentLeftRank>
                             </CoinContentLeft>
                             <CoinCurrentPrice>
@@ -208,7 +300,7 @@ const DetailCoin = () => {
                             </Table>
                         </TableBox>
 
-                        <CoinChart/>
+                        <CoinChart />
 
                         <PriceStatusBox>
                             <PriceStatus>
