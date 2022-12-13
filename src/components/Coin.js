@@ -73,6 +73,9 @@ const Coin = ({ data }) => {
 
     const CoinSection = styled.div`
         width: 100%;
+        a {
+            text-decoration: none;
+        }
     `
     return (
         <CoinSection>
