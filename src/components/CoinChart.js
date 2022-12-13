@@ -85,6 +85,8 @@ const CoinChart = () => {
     //Chart Js Config
     const options = {
         responsive: true ,
+        maintainAspectRatio: true ,
+        aspectRatio: 1.5 ,
     }
 
     const mainData = coinChartData.map(value => moment(value.x).format("MMMDD"));
