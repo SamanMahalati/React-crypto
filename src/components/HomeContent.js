@@ -12,7 +12,7 @@ const Container = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10rem 15rem 5rem 15rem;
+    padding: 10rem 15rem 10rem 15rem;
     gap: 8rem;
 `
 const CartContainer = styled.div`
