@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 //Images
 import BitcoinIcon from "../images/icon/Bitcoin.png"
 import EthereumIcon from "../images/icon/Ethereum.png"
 import LitecoinIcon from "../images/icon/Litecoin.png"
+
+//Aos Library 
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 //Styles
 import styled from "styled-components"
@@ -78,11 +82,17 @@ const CartNameContainer = styled.div`
 
 
 const TradeSecure = () => {
+
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
+
     return (
         <Container>
             <Title>Trade securely and market the high growth cryptocurrencies.</Title>
             <CartContainer>
-                <Cart>
+                <Cart data-aos="fade-right" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="2500">
                     <img src={BitcoinIcon} alt="" />
                     <CartNameContainer>
                         <h1>Bitcoin</h1>
@@ -90,7 +100,7 @@ const TradeSecure = () => {
                     </CartNameContainer>
                     <h5>Digital currency in which a record of transactions is maintained.</h5>
                 </Cart>
-                <Cart>
+                <Cart data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">
                     <img src={EthereumIcon} alt="" />
                     <CartNameContainer>
                         <h1>Ethereum</h1>
@@ -98,7 +108,7 @@ const TradeSecure = () => {
                     </CartNameContainer>
                     <h5>Blockchain technology to create and run decentralized digital applications.</h5>
                 </Cart>
-                <Cart>
+                <Cart data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="2500">
                     <img src={LitecoinIcon} alt="" />
                     <CartNameContainer>
                         <h1>Litecoin</h1>
