@@ -92,8 +92,8 @@ const TradeSecure = () => {
         <Container>
             <Title>Trade securely and market the high growth cryptocurrencies.</Title>
             <CartContainer>
-                <Cart data-aos="fade-right" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="2500">
-                    <img src={BitcoinIcon} alt="" />
+                <Cart data-aos="fade-right" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="3000">
+                    <img src={BitcoinIcon} alt="Coin Images" />
                     <CartNameContainer>
                         <h1>Bitcoin</h1>
                         <span>BTC</span>
@@ -101,15 +101,15 @@ const TradeSecure = () => {
                     <h5>Digital currency in which a record of transactions is maintained.</h5>
                 </Cart>
                 <Cart data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000">
-                    <img src={EthereumIcon} alt="" />
+                    <img src={EthereumIcon} alt="Coin Images" />
                     <CartNameContainer>
                         <h1>Ethereum</h1>
                         <span>ETH</span>
                     </CartNameContainer>
                     <h5>Blockchain technology to create and run decentralized digital applications.</h5>
                 </Cart>
-                <Cart data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="2500">
-                    <img src={LitecoinIcon} alt="" />
+                <Cart data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="3000">
+                    <img src={LitecoinIcon} alt="Coin Images" />
                     <CartNameContainer>
                         <h1>Litecoin</h1>
                         <span>LTC</span>

@@ -84,24 +84,24 @@ const MarketDetails = () => {
             <BoxContainer>
 
                 <Box>
-                    <img src={InevestVector} alt="Chart" data-aos="fade-left"/>
-                    <BoxContentContainer data-aos="fade-right">
+                    <img src={InevestVector} alt="Chart" data-aos="fade-left" data-aos-duration="3000"/>
+                    <BoxContentContainer data-aos="fade-right" data-aos-duration="3000">
                         <BoxTitle>Invest Smart</BoxTitle>
                         <BoxText>Get full statistic information about the behaviour of buyers and sellers will help you to make the decision. </BoxText>
                     </BoxContentContainer>
                 </Box>
 
                 <Box>
-                    <img src={DetailsVector} alt="Crypto Chart" data-aos="fade-right"/>
-                    <BoxContentContainer data-aos="fade-left">
+                    <img src={DetailsVector} alt="Crypto Chart" data-aos="fade-right" data-aos-duration="3000"/>
+                    <BoxContentContainer data-aos="fade-left" data-aos-duration="3000">
                         <BoxTitle>Detailed Statistics</BoxTitle>
                         <BoxText>View all mining related information in realtime, at any point at any location and decide which polls you want to mine in.</BoxText>
                     </BoxContentContainer>
                 </Box>
 
                 <Box>
-                    <img src={GrowVector} alt="Table" data-aos="fade-left"/>
-                    <BoxContentContainer data-aos="fade-right">
+                    <img src={GrowVector} alt="Table" data-aos="fade-left" data-aos-duration="3000"/>
+                    <BoxContentContainer data-aos="fade-right" data-aos-duration="3000">
                         <BoxTitle>Grow your profit and track your investments</BoxTitle>
                         <BoxText>Use advanced analytical tools. Clear TradingView charts let you track current and historical profit investments.</BoxText>
                     </BoxContentContainer>

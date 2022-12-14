@@ -93,21 +93,21 @@ const HomeContent = () => {
     return (
         <Container>
             <CartContainer>
-                <Cart data-aos="fade-up" data-aos-anchor-placement="bottom-center">
+                <Cart data-aos="fade-up" data-aos-anchor-placement="bottom-center" data-aos-duration="2000">
                     <img src={chartIcon} alt="" />
                     <CartTextContainer>
                         <h1>$30B</h1>
                         <h5>Digital Currency Exchanged</h5>
                     </CartTextContainer>
                 </Cart>
-                <Cart data-aos="fade-up" data-aos-anchor-placement="bottom-center">
+                <Cart data-aos="fade-up" data-aos-anchor-placement="bottom-center" data-aos-duration="2000">
                     <img src={personIcon} alt="" />
                     <CartTextContainer>
                         <h1>10M+</h1>
                         <h5>Trusted Wallets Investor</h5>
                     </CartTextContainer>
                 </Cart>
-                <Cart data-aos="fade-up" data-aos-anchor-placement="bottom-center">
+                <Cart data-aos="fade-up" data-aos-anchor-placement="bottom-center" data-aos-duration="2000">
                     <img src={worldIcon} alt="" />
                     <CartTextContainer>
                         <h1>195</h1>
@@ -118,10 +118,10 @@ const HomeContent = () => {
             </CartContainer>
 
             <VectorContainer>
-                <div data-aos="fade-up-right">
+                <div data-aos="fade-up-right" data-aos-duration="2000">
                     <img src={vector} alt="Graphic mining" />
                 </div>
-                <VectorText data-aos="fade-up-left">
+                <VectorText data-aos="fade-up-left" data-aos-duration="2000">
                     <h1>Why you should choose CRAPPO</h1>
                     <h5>Experience the next generation cryptocurrency platform . No financial borders extra fees and fake reveiws.</h5>
                 </VectorText>
