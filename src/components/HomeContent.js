@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 //images
 import worldIcon from "../images/icon/world.png"
 import chartIcon from "../images/icon/chart.png"
 import personIcon from "../images/icon/Person.png"
 import vector from "../images/Illustrations.png"
+
+//Aos Library 
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 //Style 
 import styled from "styled-components"
@@ -79,24 +84,30 @@ const VectorText = styled.div`
 
 
 const HomeContent = () => {
+
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
+
     return (
         <Container>
             <CartContainer>
-                <Cart>
+                <Cart data-aos="fade-up" data-aos-anchor-placement="bottom-center">
                     <img src={chartIcon} alt="" />
                     <CartTextContainer>
                         <h1>$30B</h1>
                         <h5>Digital Currency Exchanged</h5>
                     </CartTextContainer>
                 </Cart>
-                <Cart>
+                <Cart data-aos="fade-up" data-aos-anchor-placement="bottom-center">
                     <img src={personIcon} alt="" />
                     <CartTextContainer>
                         <h1>10M+</h1>
                         <h5>Trusted Wallets Investor</h5>
                     </CartTextContainer>
                 </Cart>
-                <Cart>
+                <Cart data-aos="fade-up" data-aos-anchor-placement="bottom-center">
                     <img src={worldIcon} alt="" />
                     <CartTextContainer>
                         <h1>195</h1>
@@ -107,10 +118,10 @@ const HomeContent = () => {
             </CartContainer>
 
             <VectorContainer>
-                <div>
+                <div data-aos="fade-up-right">
                     <img src={vector} alt="Graphic mining" />
                 </div>
-                <VectorText>
+                <VectorText data-aos="fade-up-left">
                     <h1>Why you should choose CRAPPO</h1>
                     <h5>Experience the next generation cryptocurrency platform . No financial borders extra fees and fake reveiws.</h5>
                 </VectorText>
