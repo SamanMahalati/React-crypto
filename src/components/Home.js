@@ -4,6 +4,7 @@ import React from 'react';
 import Landing from './Landing';
 import HomeContent from './HomeContent';
 import TradeSecure from './TradeSecure';
+import MarketDetails from './MarketDetails';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <Landing/>
             <HomeContent/>
             <TradeSecure/>
+            <MarketDetails/>
         </main>
     );
 };
