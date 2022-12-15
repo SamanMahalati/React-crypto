@@ -6,6 +6,7 @@ import HomeContent from './HomeContent';
 import TradeSecure from './TradeSecure';
 import MarketDetails from './MarketDetails';
 
+
 const Home = () => {
     return (
         <main>

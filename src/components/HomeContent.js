@@ -19,11 +19,26 @@ const Container = styled.section`
     justify-content: center;
     padding: 10rem 15rem 10rem 15rem;
     gap: 8rem;
+    
+    @media screen and (max-width: 1500px) {
+        padding: 10rem 10rem 10rem 10rem;
+    }
+    @media screen and (max-width: 1350px) {
+        padding: 10rem 5rem 10rem 5rem;
+    }
+    @media screen and (max-width: 840px) {
+        padding: 10rem 2rem 10rem 2rem;
+    }
 `
 const CartContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media screen and (max-width: 780px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4rem;
+    }
 `
 
 const Cart = styled.div`
@@ -38,22 +53,25 @@ const Cart = styled.div`
         width: 4rem;
         border-radius: 3rem;
     }
+    
 `
 
 const CartTextContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 5px;
-
+    width: 100%;
     h1 {
         color: #fff;
         font-weight: 900;
         font-size: 30px;
+        text-align: center;
     }
     h5 {
         color: #E0E0E0;
         font-weight: 300;
         font-size: 15px;
+        text-align: center;
     }
 `
 
@@ -62,6 +80,29 @@ const VectorContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    gap: 4rem;
+
+    @media screen and (max-width: 1200px) {
+        flex-direction: column;
+    }
+    @media screen and (max-width: 610px) {
+        img {
+            width: 25rem;
+            height: 15rem;
+        }
+    }
+    @media screen and (max-width: 440px) {
+        img {
+            width: 20rem;
+            height: 15rem;
+        }
+    }
+    @media screen and (max-width: 340px) {
+        img {
+            width: 17rem;
+            height: 13rem;
+        }
+    }
 `
 
 const VectorText = styled.div`
@@ -71,13 +112,16 @@ const VectorText = styled.div`
     h1 {
         font-size: 45px;
         color: #fff; 
-        width: 40rem;
         font-weight: 900;
+        width: 100%;
+        text-align: center;
     }
     h5 {
         color: #E0E0E0; 
         line-height: 1.7rem;
         width: 30rem;
+        width: 100%;
+        text-align: center;
     }
 `
 
