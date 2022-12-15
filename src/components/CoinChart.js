@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState, useTransition } from 'react';
 import { useParams } from "react-router-dom";
 import useAxios from "axios-hooks"
 
@@ -41,7 +41,9 @@ const CoinChart = () => {
     const params = useParams()
     const CoinName = params.id
 
-    const [historyChartDay , setHistoryChartDay] = useState("1h")
+    const [days, setDays] = useState()
+    const [historyChartDay, setHistoryChartDay] = useState("1h")
+    const [isPending, startTransition] = useTransition()
 
     //Style Components
     const Container = styled.div`
@@ -62,9 +64,26 @@ const CoinChart = () => {
             cursor: pointer;
             font-size: 18px;
         }
-
+        
         @media screen and (max-width: 500px) {
             flex-wrap: wrap;
+        }
+        `
+
+    const InputContainer = styled.div`
+        width: 100%;
+        display: flex;
+        align-items: center;
+        
+        input {
+            width: 18rem;
+            height: 2rem;
+            background-color: #27272A;
+            color: #fff;
+            font-size: 18px;
+            padding: 1.5rem 0 1.5rem 1rem;
+            border-radius: 0.7rem;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px 0px;
         }
     `
 
@@ -77,19 +96,14 @@ const CoinChart = () => {
 
     const coinChartData = data.prices.map(value => ({ x: value[0], y: value[1].toFixed(2) }))
 
-    console.log(coinChartData);
-
-
-
-
     //Chart Js Config
     const options = {
-        responsive: true ,
-        maintainAspectRatio: true ,
-        aspectRatio: 1.5 ,
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1.5,
     }
 
-    const mainData = coinChartData.map(value => moment(value.x).format('MMDD YYYY, h:mm:ss a'));
+    const mainData = coinChartData.map(value => moment(value.x).format('MMMM Do YYYY, h:mm:ss a'));
 
     console.log(mainData);
     const datas = {
@@ -111,9 +125,21 @@ const CoinChart = () => {
         refetch()
     }
 
+    const InputHistoryDayHandler = (event) => {
+        startTransition(() => {
+            setDays(event.target.value)
+            setHistoryChartDay(event.target.value)
+            refetch()
+        })
+
+    }
+
 
     return (
         <Container>
+            <InputContainer>
+                <input type="text" placeholder='Search By Number Days....' value={days} onChange={InputHistoryDayHandler} autoFocus />
+            </InputContainer>
             {
                 data ?
                     <>
