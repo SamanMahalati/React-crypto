@@ -89,7 +89,7 @@ const CoinChart = () => {
         aspectRatio: 1.5 ,
     }
 
-    const mainData = coinChartData.map(value => moment(value.x).format("MMMDD"));
+    const mainData = coinChartData.map(value => moment(value.x).format('MMDD YYYY, h:mm:ss a'));
 
     console.log(mainData);
     const datas = {
@@ -123,7 +123,7 @@ const CoinChart = () => {
                             <button onClick={BtnHistoryDayHandler} id={"7d"}>7d</button>
                             <button onClick={BtnHistoryDayHandler} id={"14d"}>14d</button>
                             <button onClick={BtnHistoryDayHandler} id={"30d"}>30d</button>
-                            <button onClick={BtnHistoryDayHandler} id={"1y"}>1yr</button>
+                            <button onClick={BtnHistoryDayHandler} id={"360d"}>1yr</button>
                         </BtnContainer>
                         <Line options={options} data={datas} />
 
