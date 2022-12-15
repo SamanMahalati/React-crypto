@@ -19,6 +19,19 @@ const Container = styled.section`
     background-color: #fff;
     width: 100%;
     padding: 7rem 15rem 7rem 15rem;
+    
+    @media screen and (max-width: 1200px) {
+        padding: 7rem 10rem 7rem 10rem;
+    }
+    @media screen and (max-width: 1020px) {
+        padding: 7rem 5rem 7rem 5rem;
+    }
+    @media screen and (max-width: 1020px) {
+        padding: 7rem 3rem 7rem 3rem;
+    }
+    @media screen and (max-width: 360px) {
+        padding: 7rem 1rem 7rem 1rem;
+    }
 `
 
 
@@ -27,9 +40,13 @@ const Title = styled.h1`
     text-align: center;
     font-size: 40px;
     font-weight: 900;
-    width: 55rem;
     margin: 0 auto;
     line-height: 3.5rem;
+    
+    @media screen and (max-width: 450px) {
+        font-size: 30px;
+        line-height: 2.5rem;
+    }
 `
 
 const CartContainer = styled.div`
@@ -37,6 +54,10 @@ const CartContainer = styled.div`
     align-items: center;
     justify-content: space-evenly;
     gap: 3rem;
+
+    @media screen and (max-width: 880px) {
+        flex-wrap: wrap;
+    }
 `
 
 const Cart = styled.div`
