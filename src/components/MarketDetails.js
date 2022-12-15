@@ -19,14 +19,26 @@ const Container = styled.section`
     color: #fff;
     padding: 8rem 15rem 10rem 15rem;
     gap: 8rem;
+    width: 100%;
+    
+    @media screen and (max-width: 840px) {
+        padding: 8rem 5rem 10rem 5rem;
+    }
+    @media screen and (max-width: 590px) {
+        padding: 8rem 2rem 10rem 2rem;
+    }
 `
 
 const Title = styled.h1`
     font-size: 40px;
     font-weight: 900;
     text-align: center;
-    width: 50rem;
     line-height: 4rem;
+    
+    @media screen and (max-width: 415px) {
+        font-size: 30px;
+        line-height: 3rem;
+    }
 `
 
 const BoxContainer = styled.div`
@@ -34,6 +46,9 @@ const BoxContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 12rem;
+    @media screen and (max-width: 360px) {
+        gap: 3rem;
+    }
 `
 
 const Box = styled.div`
@@ -51,20 +66,63 @@ const Box = styled.div`
             order: 1;
         }
     }
+
+    
+    @media screen and (max-width: 1600px) {
+        flex-direction: column;
+        img {
+            width: 50rem;
+        }
+        &:nth-child(1) , &:nth-child(2) , &:nth-child(3){
+            img {
+                order: 1;
+            }
+        }
+
+        }
+        @media screen and (max-width: 870px) {
+            img {
+                width: 40rem;
+            }
+        }
+        @media screen and (max-width: 670px) {
+            img {
+                width: 30rem;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            img {
+                width: 20rem;
+            }
+        }
+        @media screen and (max-width: 360px) {
+            gap: 7rem;
+            img {
+                width: 17rem;
+            }
+        }
 `
 
 const BoxTitle = styled.h1`
     font-weight: 900;
     font-size: 35px;
+    text-align: center;
+    width: 100%;
 `
 
 const BoxText = styled.h5`
     font-weight: 300;
     font-size: 25px;
+    text-align: center;
+    width: 100%;
+    
+    @media screen and (max-width: 320px) {
+        font-size: 20px;
+        padding: 0 2rem;
+    }
 `
 
 const BoxContentContainer = styled.div`
-    width: 35rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -84,7 +142,7 @@ const MarketDetails = () => {
             <BoxContainer>
 
                 <Box>
-                    <img src={InevestVector} alt="Chart" data-aos="fade-left" data-aos-duration="3000"/>
+                    <img src={InevestVector} alt="Chart" data-aos="fade-left" data-aos-duration="3000" />
                     <BoxContentContainer data-aos="fade-right" data-aos-duration="3000">
                         <BoxTitle>Invest Smart</BoxTitle>
                         <BoxText>Get full statistic information about the behaviour of buyers and sellers will help you to make the decision. </BoxText>
@@ -92,7 +150,7 @@ const MarketDetails = () => {
                 </Box>
 
                 <Box>
-                    <img src={DetailsVector} alt="Crypto Chart" data-aos="fade-right" data-aos-duration="3000"/>
+                    <img src={DetailsVector} alt="Crypto Chart" data-aos="fade-right" data-aos-duration="3000" />
                     <BoxContentContainer data-aos="fade-left" data-aos-duration="3000">
                         <BoxTitle>Detailed Statistics</BoxTitle>
                         <BoxText>View all mining related information in realtime, at any point at any location and decide which polls you want to mine in.</BoxText>
@@ -100,7 +158,7 @@ const MarketDetails = () => {
                 </Box>
 
                 <Box>
-                    <img src={GrowVector} alt="Table" data-aos="fade-left" data-aos-duration="3000"/>
+                    <img src={GrowVector} alt="Table" data-aos="fade-left" data-aos-duration="3000" />
                     <BoxContentContainer data-aos="fade-right" data-aos-duration="3000">
                         <BoxTitle>Grow your profit and track your investments</BoxTitle>
                         <BoxText>Use advanced analytical tools. Clear TradingView charts let you track current and historical profit investments.</BoxText>
