@@ -22,6 +22,16 @@ const FooterContainer = styled.footer`
     padding: 5rem 15rem 5rem 15rem;
     width: 100%;
     gap: 8rem;
+    
+    @media screen and (max-width: 1460px) {
+        padding: 5rem 10rem 5rem 10rem;
+    }
+    @media screen and (max-width: 1300px) {
+        padding: 5rem 5rem 5rem 5rem;
+    }
+    @media screen and (max-width: 430px) {
+        padding: 5rem 2rem 5rem 2rem;
+    }
     `
 
 const FooterMain = styled.footer`
@@ -30,6 +40,17 @@ const FooterMain = styled.footer`
     justify-content: space-between;
     color: #fff;
     width: 100%;
+    
+    @media screen and (max-width: 1040px) {
+        gap: 5rem;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    @media screen and (max-width: 650px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 `
 
 const LogoContainer = styled.div`
@@ -45,6 +66,9 @@ const ListContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    @media screen and (max-width: 1060px) {
+        padding: 0 2rem;
+    }
 `
 
 const List = styled.ul`
@@ -66,7 +90,6 @@ const FooterTitle = styled.div`
 
     h1 {
         font-weight: 900;
-        width: 25rem;
         text-align: center;
     }
 
@@ -75,6 +98,18 @@ const FooterTitle = styled.div`
         align-items: center;
         justify-content: center;
         gap: 1.3rem;
+    }
+
+    @media screen and (max-width: 540px) {
+        div {
+            flex-direction: column;
+        }
+    }
+    @media screen and (max-width: 320px) {
+        h1 {
+            font-size: 25px;
+            line-height: 2.5rem;
+        }
     }
 `
 
@@ -91,6 +126,14 @@ const FooterAboutUs = styled.div`
         display: flex;
         align-items: center;
         gap: 2rem;
+    }
+
+    @media screen and (max-width: 1040px) {
+        flex-direction: column;
+        gap: 2rem;
+        h3 {
+            order: 1;
+        }
     }
 `
 
