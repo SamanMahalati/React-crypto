@@ -37,6 +37,7 @@ const Navbar = () => {
         top: 0;
         list-style: none;
         font-size: 16px;
+        z-index: 100;
         font-weight: 400;
         li {
             cursor: pointer;
@@ -57,6 +58,7 @@ const Navbar = () => {
             border-radius: 0 1rem 1rem 0;
             height: 100vh;
             gap: 2rem;
+            box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
             a {
                 color: #fff;
                 order: 2;
@@ -78,6 +80,15 @@ const Navbar = () => {
                 }
             }
         }
+
+        @media screen and (max-width: 430px) {
+            font-size: 16px;
+            width: 12rem;
+            li {
+                width: 9rem;
+            }
+        }
+
     `
 
     const LogoContainer = styled.div`
@@ -100,6 +111,9 @@ const Navbar = () => {
             background-color: #3671E9;
             color: #fff;
             width: 14rem;
+        }
+        @media screen and (max-width: 430px) {
+            width: 9rem;
         }
     `
 
@@ -127,6 +141,9 @@ const Navbar = () => {
         box-shadow: rgba(0, 0, 0, 0.2) 0px 11.3115px 40px 0px;
         @media screen and (max-width: 960px) {
             width: 14rem;
+        }
+        @media screen and (max-width: 430px) {
+            width: 9rem;
         }
     `
 
@@ -162,7 +179,33 @@ const Navbar = () => {
             align-items: center;
             justify-content: center;
         }
-    `
+        `
+
+    const FirstChild = styled.span`
+        transform-origin: 1px;
+        @media screen and (max-width: 960px) {
+            transform: ${OpenMenu ? "rotate(45deg)" : "rotate(0deg)"};
+        }
+        `
+
+    const SecondChild = styled.span`
+        transform-origin: 1px;
+        @media screen and (max-width: 960px) {
+            transform: ${OpenMenu ? "translateX(45rem)" : "translateX(0)"};
+        }
+        `
+
+    const ThirdChild = styled.span`
+        transform-origin: 1px;
+        @media screen and (max-width: 960px) {
+            transform: ${OpenMenu ? "rotate(-45deg)" : "rotate(0deg)"};
+        }
+        `
+
+    const CheckClickHandler = () => {
+        setOpenMenu(false)
+    }
+
 
     return (
         <Menu>
@@ -172,12 +215,12 @@ const Navbar = () => {
             </LogoContainer>
 
             <HamburgerMenu onClick={() => setOpenMenu(!OpenMenu)}>
-                <span></span>
-                <span></span>
-                <span></span>
+                <FirstChild></FirstChild>
+                <SecondChild></SecondChild>
+                <ThirdChild></ThirdChild>
             </HamburgerMenu>
             <Ul>
-                <li>
+                <li onClick={CheckClickHandler}>
                     <Link to="/">Home</Link>
                     <IconContainer>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
@@ -185,7 +228,7 @@ const Navbar = () => {
                         </svg>
                     </IconContainer>
                 </li>
-                <li>
+                <li onClick={CheckClickHandler}>
                     <Link to="/Coins">Coins</Link>
                     <IconContainer>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
@@ -195,7 +238,7 @@ const Navbar = () => {
                         </svg>
                     </IconContainer>
                 </li>
-                <li>
+                <li onClick={CheckClickHandler}>
                     <Link to="/Blogs">Blogs</Link>
                     <IconContainer>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
@@ -203,7 +246,7 @@ const Navbar = () => {
                         </svg>
                     </IconContainer>
                 </li>
-                <li>
+                <li onClick={CheckClickHandler}>
                     <Link to="/AboutUs">About Us</Link>
                     <IconContainer>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
@@ -213,11 +256,11 @@ const Navbar = () => {
                     </IconContainer>
                 </li>
                 <NavBtnContainer>
-                    <LoginBtn>Login</LoginBtn>
+                    <LoginBtn onClick={CheckClickHandler}>Login</LoginBtn>
                     <div>
                         |
                     </div>
-                    <SignInBtn>Register</SignInBtn>
+                    <SignInBtn onClick={CheckClickHandler}>Register</SignInBtn>
                 </NavBtnContainer>
             </Ul>
 
