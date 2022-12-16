@@ -1,22 +1,20 @@
+a {
+    color: #fff;
+    text-decoration: none;
+}
 .pagination {
     background-color: #27272A;
-    width: 100%;
     padding: 0 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     list-style: none;
-    margin: 2rem auto;
+    margin: 2rem 4rem;
     border-radius: 1rem;
     padding: 0rem 2rem;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-}
-
-.previous , .next , .break{
-    color: #3671E9;
-    cursor: pointer;
-    padding: 0 1rem;
+    color: #fff;
 }
 
 .page-item {

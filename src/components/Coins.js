@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import "./CoinsPaginnation.css"
 
 //React Paginnatoin Library
-import ReactPaginate from "react-paginate"
+import Pagination, { bootstrap5PaginationPreset } from 'react-responsive-pagination';
 
 //Call all coin from api
 import { fetchCoins } from '../redux/Coin/coinAction';
@@ -20,6 +20,9 @@ import Loading from '../shared/Loading';
 const Coins = () => {
     const dispatch = useDispatch()
     const coinState = useSelector(state => state.coinState)
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = 260;
 
     useEffect(() => {
         dispatch(fetchCoins(50, 1))
@@ -70,8 +73,9 @@ const Coins = () => {
     `
 
     const pageClickHandler = (data) => {
-        let currentPage = data.selected + 1
-        dispatch(fetchCoins(50, currentPage))
+        const Page = data
+        setCurrentPage(Page)
+        dispatch(fetchCoins(50, Page))
     }
     return (
         <>
@@ -94,13 +98,14 @@ const Coins = () => {
                             coinState.coins.map(coinData => <Coin key={coinData.id} data={coinData} />)
                 }
             </CoinSection>
-            <ReactPaginate 
-            previousLabel={"Previous"}
-            nextLabel={"Next"}
-            pageCount={260}
-            onPageChange={pageClickHandler}
-            containerClassName={"pagination"}
-            pageClassName={"page-item"}
+            <Pagination
+                {...bootstrap5PaginationPreset}
+                current={currentPage}
+                total={totalPages}
+                onPageChange={pageClickHandler}
+                className={"pagination"}
+                pageItemClassName={"page-item"}
+                maxWidth={10}
             />
         </>
     );
