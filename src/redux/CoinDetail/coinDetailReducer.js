@@ -17,7 +17,8 @@ const coinDetailReducer = (state = initialState, action) => {
             }
         case "FETCH_COIN_ERROR":
             return {
-                loading: false,
+                loading: false ,
+                coin: [] ,
                 error: action.payload
             }
         default: {

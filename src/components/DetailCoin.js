@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import styled from "styled-components"
+//Fetch Coin Detail From Api
+import { fetchCoin } from '../redux/CoinDetail/coinDetailAction';
 
-import axios from 'axios';
+import styled from "styled-components"
 
 //Library for exchange html element to text
 import DOMPurify from "dompurify"
@@ -14,7 +16,7 @@ import Loading from '../shared/Loading';
 //Components
 import CoinChart from './CoinChart';
 
-    const Container = styled.section`
+const Container = styled.section`
         display: flex;
         align-items: center;
         justify-content: center;
@@ -42,7 +44,7 @@ import CoinChart from './CoinChart';
         }
     `
 
-    const CoinNameBox = styled.div`
+const CoinNameBox = styled.div`
         background-color: #27272A;
         padding: 2rem 5rem;
         width: 100%;
@@ -57,7 +59,7 @@ import CoinChart from './CoinChart';
             font-size: 50px;
         }
     `
-    const CoinContent = styled.div`
+const CoinContent = styled.div`
         background-color: #27272A;
         padding: 2rem 5rem;
         width: 100%;
@@ -73,7 +75,7 @@ import CoinChart from './CoinChart';
             gap: 2rem;
         }
     `
-    const CoinContentLeft = styled.div`
+const CoinContentLeft = styled.div`
         display: flex;
         flex-direction: column;
         gap: 2rem;
@@ -91,7 +93,7 @@ import CoinChart from './CoinChart';
         }
 
         `
-    const CoinContentLeftRank = styled.div`
+const CoinContentLeftRank = styled.div`
         display: flex;
         align-items: center;
         img {
@@ -113,7 +115,7 @@ import CoinChart from './CoinChart';
     }
     `
 
-    const CoinCurrentPrice = styled.div`
+const CoinCurrentPrice = styled.div`
         h4 {
             font-weight: 900;
             font-size: 45px;
@@ -125,7 +127,7 @@ import CoinChart from './CoinChart';
         }
     `
 
-    const TableBox = styled.div`
+const TableBox = styled.div`
         background-color: #27272A;
         padding: 2rem 5rem;
         width: 100%;
@@ -137,7 +139,7 @@ import CoinChart from './CoinChart';
         justify-content: center;
     `
 
-    const Table = styled.table`
+const Table = styled.table`
     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
         tr {
             background-color: #404040;
@@ -175,7 +177,7 @@ import CoinChart from './CoinChart';
         
     `
 
-    const PriceStatusBox = styled.div`
+const PriceStatusBox = styled.div`
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
@@ -188,7 +190,7 @@ import CoinChart from './CoinChart';
             grid-template-columns: 1fr;
         }
     `
-    const PriceStatus = styled.div`
+const PriceStatus = styled.div`
         background-color: #404040;
         padding: 1rem;
         border-radius: 1rem;
@@ -212,121 +214,117 @@ import CoinChart from './CoinChart';
 
         
     `
-    const AboutCoin = styled.h2`
+const AboutCoin = styled.h2`
         line-height: 3rem;
 
     `
-    const AboutTitle = styled.h1`
+const AboutTitle = styled.h1`
         font-size: 40px;
         text-align: left;
         width: 100%;
         padding: 4rem 0 0 0;
     `
 
-    const CoinContantLeftText = styled.div`
+const CoinContantLeftText = styled.div`
         display: flex;
     `
 const DetailCoin = () => {
 
-    const [coin, setCoin] = useState([])
-    const [loading, setLoading] = useState(true)
+    const dispatch = useDispatch()
+    const coinState = useSelector(state => state.coinDetailState)
 
     const Params = useParams()
     const coinID = Params.id
 
     useEffect(() => {
-        axios.get(`https://api.coingecko.com/api/v3/coins/${coinID}`)
-            .then(response => {
-                const data = response.data
-                setCoin(data)
-                setLoading(false)
-            })
-            .catch(error => {
-                setLoading(true)
-            })
+        dispatch(fetchCoin(coinID))
     }, [])
 
     return (
         <Container>
+            {console.log(coinState)}
             {
-                loading ? <Loading /> :
-                    <>
-                        <CoinNameBox>
-                            <h1>{coin.name}</h1>
-                        </CoinNameBox>
+                coinState.loading ? <Loading /> :
+                    coinState.error ? <h1>{coinState.error}</h1> :
+                        <>
+                            <CoinNameBox>
+                                <h1>{coinState.coin.name}</h1>
+                            </CoinNameBox>
 
-                        <CoinContent>
-                            <CoinContentLeft>
-                                <h4>Rank #{coin.market_cap_rank}</h4>
-                                <CoinContentLeftRank>
-                                    <img src={coin.image.small} />
-                                    <CoinContantLeftText>
-                                        (
-                                        <h4>{coin.symbol.toUpperCase()}</h4>
-                                        /
-                                        <h4>{coin.name}</h4>
-                                        )
-                                    </CoinContantLeftText>
-                                </CoinContentLeftRank>
-                            </CoinContentLeft>
-                            <CoinCurrentPrice>
-                                <h4>${coin.market_data.current_price.usd.toLocaleString()}</h4>
-                            </CoinCurrentPrice>
-                        </CoinContent>
+                            <CoinContent>
+                                <CoinContentLeft>
+                                    <h4>Rank #{coinState.coin.market_cap_rank}</h4>
 
 
-                        <TableBox>
-                            <Table>
-                                <thead>
-                                    <tr>
-                                        <th>1h</th>
-                                        <th>24h</th>
-                                        <th>7d</th>
-                                        <th>14d</th>
-                                        <th>30d</th>
-                                        <th>1yr</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>{coin.market_data.price_change_percentage_1h_in_currency.usd ? <p>%{coin.market_data.price_change_percentage_1h_in_currency.usd.toFixed(2)}</p> : null}</td>
-                                        <td>{coin.market_data.price_change_percentage_24h_in_currency.usd ? <p>%{coin.market_data.price_change_percentage_24h_in_currency.usd.toFixed(2)}</p> : null}</td>
-                                        <td>{coin.market_data.price_change_percentage_7d_in_currency.usd ? <p>%{coin.market_data.price_change_percentage_7d_in_currency.usd.toFixed(2)}</p> : null}</td>
-                                        <td>{coin.market_data.price_change_percentage_14d_in_currency.usd ? <p>%{coin.market_data.price_change_percentage_14d_in_currency.usd.toFixed(2)}</p> : null}</td>
-                                        <td>{coin.market_data.price_change_percentage_30d_in_currency.usd ? <p>%{coin.market_data.price_change_percentage_30d_in_currency.usd.toFixed(2)}</p> : null}</td>
-                                        <td>{coin.market_data.price_change_percentage_1y_in_currency.usd ? <p>%{coin.market_data.price_change_percentage_1y_in_currency.usd.toFixed(2)}</p> : null}</td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                        </TableBox>
+                                    <CoinContentLeftRank>
+                                        {coinState.coin.image ? <img src={coinState.coin.image.small} alt="coin" /> : null}
+                                        <CoinContantLeftText>
+                                            (
+                                            {coinState.coin.symbol ? <h4>{coinState.coin.symbol.toUpperCase()}</h4> : null}
+                                            /
+                                            {coinState.coin.name ? <h4>{coinState.coin.name}</h4> : null}
+                                            )
+                                        </CoinContantLeftText>
+                                    </CoinContentLeftRank>
+                                </CoinContentLeft>
+                                <CoinCurrentPrice>
+                                    {coinState.coin.market_data ? <h4>${coinState.coin.market_data.current_price.usd.toLocaleString()}</h4> : null}
+                                </CoinCurrentPrice>
+                            </CoinContent>
 
-                        <CoinChart />
 
-                        <PriceStatusBox>
+                            <TableBox>
+                                <Table>
+                                    <thead>
+                                        <tr>
+                                            <th>1h</th>
+                                            <th>24h</th>
+                                            <th>7d</th>
+                                            <th>14d</th>
+                                            <th>30d</th>
+                                            <th>1yr</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {coinState.coin.market_data ? <td>{coinState.coin.market_data.price_change_percentage_1h_in_currency.usd ? <p>%{coinState.coin.market_data.price_change_percentage_1h_in_currency.usd.toFixed(2)}</p> : null}</td> : null}
+                                            {coinState.coin.market_data ? <td>{coinState.coin.market_data.price_change_percentage_24h_in_currency.usd ? <p>%{coinState.coin.market_data.price_change_percentage_24h_in_currency.usd.toFixed(2)}</p> : null}</td> : null}
+                                            {coinState.coin.market_data ? <td>{coinState.coin.market_data.price_change_percentage_7d_in_currency.usd ? <p>%{coinState.coin.market_data.price_change_percentage_7d_in_currency.usd.toFixed(2)}</p> : null}</td> : null}
+                                            {coinState.coin.market_data ? <td>{coinState.coin.market_data.price_change_percentage_14d_in_currency.usd ? <p>%{coinState.coin.market_data.price_change_percentage_14d_in_currency.usd.toFixed(2)}</p> : null}</td> : null}
+                                            {coinState.coin.market_data ? <td>{coinState.coin.market_data.price_change_percentage_30d_in_currency.usd ? <p>%{coinState.coin.market_data.price_change_percentage_30d_in_currency.usd.toFixed(2)}</p> : null}</td> : null}
+                                            {coinState.coin.market_data ? <td>{coinState.coin.market_data.price_change_percentage_1y_in_currency.usd ? <p>%{coinState.coin.market_data.price_change_percentage_1y_in_currency.usd.toFixed(2)}</p> : null}</td> : null}
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </TableBox>
+
+                            <CoinChart />
+
+                            <PriceStatusBox>
                             <PriceStatus>
                                 <h2>24h Low</h2>
-                                <p>${coin.market_data.low_24h.usd.toLocaleString()}</p>
+                                {coinState.coin.market_data ? <p>${coinState.coin.market_data.low_24h.usd.toLocaleString()}</p> : null }
                             </PriceStatus>
                             <PriceStatus>
                                 <h2>Market cap</h2>
-                                <p>${coin.market_data.market_cap.usd.toLocaleString()}</p>
+                                {coinState.coin.market_data ? <p>${coinState.coin.market_data.market_cap.usd.toLocaleString()}</p> : null }
                             </PriceStatus>
                             <PriceStatus>
                                 <h2>24h high</h2>
-                                <p>${coin.market_data.high_24h.usd.toLocaleString()}</p>
+                                {coinState.coin.market_data ? <p>${coinState.coin.market_data.high_24h.usd.toLocaleString()}</p> : null }
                             </PriceStatus>
                             <PriceStatus>
                                 <h2>circulating supply</h2>
-                                <p>${coin.market_data.circulating_supply.toLocaleString()}</p>
+                                {coinState.coin.market_data ? <p>${coinState.coin.market_data.circulating_supply.toLocaleString()}</p> : null }
                             </PriceStatus>
                         </PriceStatusBox>
 
 
-                        <AboutTitle>About {coin.name} :</AboutTitle>
-                        <AboutCoin dangerouslySetInnerHTML={{
-                            __html: DOMPurify.sanitize(coin.description.en)
-                        }}></AboutCoin>
-                    </>
+                        <AboutTitle>About {coinState.coin.name} :</AboutTitle>
+                        { coinState.coin.description ?<AboutCoin dangerouslySetInnerHTML={{
+                            __html: DOMPurify.sanitize(coinState.coin.description.en)
+                        }}></AboutCoin> : null}
+                        </>
             }
         </Container>
     );
