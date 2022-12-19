@@ -5,8 +5,6 @@ import styled from 'styled-components';
 //React Router Dom 
 import { Link } from "react-router-dom"
 
-const Coin = ({ data }) => {
-
     const BodyMenu = styled.div`
         display: grid;
         align-items: center;
@@ -77,6 +75,9 @@ const Coin = ({ data }) => {
             text-decoration: none;
         }
     `
+    
+const Coin = ({ data }) => {
+
     return (
         <CoinSection>
             <Link to={`/Coins/${data.id}`}>

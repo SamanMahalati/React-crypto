@@ -4,7 +4,7 @@ import { combineReducers } from "redux"
 import coinReducer from "./Coin/coinReducer"
 
 const rootReducer = combineReducers({
-    coinState: coinReducer
+    coinState: coinReducer ,
 })
 
 export default rootReducer

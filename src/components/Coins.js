@@ -17,18 +17,7 @@ import Coin from './Coin';
 //Loading component
 import Loading from '../shared/Loading';
 
-const Coins = () => {
-    const dispatch = useDispatch()
-    const coinState = useSelector(state => state.coinState)
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 260;
-
-    useEffect(() => {
-        dispatch(fetchCoins(50, 1))
-    }, [])
-
-    const CoinSection = styled.section`
+const CoinSection = styled.section`
         display: flex;
         align-items: center;
         justify-content: center;
@@ -52,7 +41,7 @@ const Coins = () => {
         }
 `
 
-    const HeadMenu = styled.div`
+const HeadMenu = styled.div`
         display: grid;
         align-items: center;
         grid-template-columns: 5rem 10rem 1fr 1fr 1fr 1fr 1fr;
@@ -71,6 +60,18 @@ const Coins = () => {
             display: none;
         }
     `
+
+const Coins = () => {
+    const dispatch = useDispatch()
+    const coinState = useSelector(state => state.coinState)
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = 260;
+
+    useEffect(() => {
+        dispatch(fetchCoins(50, 1))
+    }, [])
+
 
     const pageClickHandler = (data) => {
         const Page = data

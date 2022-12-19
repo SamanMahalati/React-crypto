@@ -14,8 +14,6 @@ import Loading from '../shared/Loading';
 //Components
 import CoinChart from './CoinChart';
 
-const DetailCoin = () => {
-
     const Container = styled.section`
         display: flex;
         align-items: center;
@@ -228,6 +226,8 @@ const DetailCoin = () => {
     const CoinContantLeftText = styled.div`
         display: flex;
     `
+const DetailCoin = () => {
+
     const [coin, setCoin] = useState([])
     const [loading, setLoading] = useState(true)
 

@@ -37,19 +37,11 @@ ChartJS.register(
     Legend
 );
 
-const CoinChart = () => {
-    const params = useParams()
-    const CoinName = params.id
-
-    const [days, setDays] = useState()
-    const [historyChartDay, setHistoryChartDay] = useState("1h")
-    const [isPending, startTransition] = useTransition()
-
-    //Style Components
-    const Container = styled.div`
+//Style Components
+const Container = styled.div`
         width: 100%;
     `
-    const BtnContainer = styled.div`
+const BtnContainer = styled.div`
         width: 100%;
         display: flex;
         align-items: center;
@@ -70,7 +62,7 @@ const CoinChart = () => {
         }
         `
 
-    const InputContainer = styled.div`
+const InputContainer = styled.div`
         width: 100%;
         display: flex;
         align-items: center;
@@ -86,6 +78,15 @@ const CoinChart = () => {
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px 0px;
         }
     `
+
+const CoinChart = () => {
+    const params = useParams()
+    const CoinName = params.id
+
+    const [days, setDays] = useState()
+    const [historyChartDay, setHistoryChartDay] = useState("1h")
+    const [isPending, startTransition] = useTransition()
+
 
     //Fetch Data
     const [{ data, loading, error }, refetch] = useAxios(
