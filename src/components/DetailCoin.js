@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState , useTransition } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -12,6 +12,9 @@ import DOMPurify from "dompurify"
 
 //Loading Components
 import Loading from '../shared/Loading';
+
+//Context
+import { CoinDayChartContext } from '../context/CoinDayChartProvider';
 
 //Components
 import CoinChart from './CoinChart';
@@ -228,7 +231,32 @@ const AboutTitle = styled.h1`
 const CoinContantLeftText = styled.div`
         display: flex;
     `
+const InputContainer = styled.div`
+        width: 100%;
+        display: flex;
+        align-items: center;
+        
+        input {
+            width: 18rem;
+            height: 2rem;
+            background-color: #27272A;
+            color: #fff;
+            font-size: 18px;
+            padding: 1.5rem 0 1.5rem 1rem;
+            border-radius: 0.7rem;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px 0px;
+        }
+    `
+
+
+
 const DetailCoin = () => {
+
+    const { historyChartDay, setHistoryChartDay } = useContext(CoinDayChartContext)
+    const [isPending , startTransition] = useTransition()
+    const [days, setDays] = useState()
+
+    console.log(historyChartDay);
 
     const dispatch = useDispatch()
     const coinState = useSelector(state => state.coinDetailState)
@@ -240,9 +268,15 @@ const DetailCoin = () => {
         dispatch(fetchCoin(coinID))
     }, [])
 
+    const InputHistoryDayHandler = (event) => {
+        startTransition(() => {
+            setDays(event.target.value)
+            setHistoryChartDay(event.target.value)
+        })
+    }
+
     return (
         <Container>
-            {console.log(coinState)}
             {
                 coinState.loading ? <Loading /> :
                     coinState.error ? <h1>{coinState.error}</h1> :
@@ -298,32 +332,35 @@ const DetailCoin = () => {
                                 </Table>
                             </TableBox>
 
+                            <InputContainer>
+                                <input type="text" placeholder='Search By Number Days....' value={days} onChange={InputHistoryDayHandler} autoFocus />
+                            </InputContainer>
                             <CoinChart />
 
                             <PriceStatusBox>
-                            <PriceStatus>
-                                <h2>24h Low</h2>
-                                {coinState.coin.market_data ? <p>${coinState.coin.market_data.low_24h.usd.toLocaleString()}</p> : null }
-                            </PriceStatus>
-                            <PriceStatus>
-                                <h2>Market cap</h2>
-                                {coinState.coin.market_data ? <p>${coinState.coin.market_data.market_cap.usd.toLocaleString()}</p> : null }
-                            </PriceStatus>
-                            <PriceStatus>
-                                <h2>24h high</h2>
-                                {coinState.coin.market_data ? <p>${coinState.coin.market_data.high_24h.usd.toLocaleString()}</p> : null }
-                            </PriceStatus>
-                            <PriceStatus>
-                                <h2>circulating supply</h2>
-                                {coinState.coin.market_data ? <p>${coinState.coin.market_data.circulating_supply.toLocaleString()}</p> : null }
-                            </PriceStatus>
-                        </PriceStatusBox>
+                                <PriceStatus>
+                                    <h2>24h Low</h2>
+                                    {coinState.coin.market_data ? <p>${coinState.coin.market_data.low_24h.usd.toLocaleString()}</p> : null}
+                                </PriceStatus>
+                                <PriceStatus>
+                                    <h2>Market cap</h2>
+                                    {coinState.coin.market_data ? <p>${coinState.coin.market_data.market_cap.usd.toLocaleString()}</p> : null}
+                                </PriceStatus>
+                                <PriceStatus>
+                                    <h2>24h high</h2>
+                                    {coinState.coin.market_data ? <p>${coinState.coin.market_data.high_24h.usd.toLocaleString()}</p> : null}
+                                </PriceStatus>
+                                <PriceStatus>
+                                    <h2>circulating supply</h2>
+                                    {coinState.coin.market_data ? <p>${coinState.coin.market_data.circulating_supply.toLocaleString()}</p> : null}
+                                </PriceStatus>
+                            </PriceStatusBox>
 
 
-                        <AboutTitle>About {coinState.coin.name} :</AboutTitle>
-                        { coinState.coin.description ?<AboutCoin dangerouslySetInnerHTML={{
-                            __html: DOMPurify.sanitize(coinState.coin.description.en)
-                        }}></AboutCoin> : null}
+                            <AboutTitle>About {coinState.coin.name} :</AboutTitle>
+                            {coinState.coin.description ? <AboutCoin dangerouslySetInnerHTML={{
+                                __html: DOMPurify.sanitize(coinState.coin.description.en)
+                            }}></AboutCoin> : null}
                         </>
             }
         </Container>

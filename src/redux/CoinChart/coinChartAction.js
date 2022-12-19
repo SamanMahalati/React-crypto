@@ -18,10 +18,10 @@ const fetchCoinChartError = error => {
     }
 }
 
-const fetchCoinChart = coinID => {
+const fetchCoinChart = (CoinName , historyChartDay) => {
     return (dispatch) => {
         dispatch(fetchCoinChartRequest())
-        axios.get(`https://api.coingecko.com/api/v3/coins/${coinID}`)
+        axios.get(`https://api.coingecko.com/api/v3/coins/${CoinName}/market_chart?vs_currency=usd&days=${historyChartDay}`)
             .then(response => {
                 const coin = response.data
                 dispatch(fetchCoinChartSuccess(coin))

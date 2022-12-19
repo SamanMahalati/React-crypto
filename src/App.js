@@ -2,7 +2,10 @@ import React from "react";
 import { Provider } from "react-redux";
 
 //React Router Dom
-import { Route, Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+
+//Context
+import CoinDayChartContextProvider from "./context/CoinDayChartProvider";
 
 
 //Redux Store
@@ -19,13 +22,15 @@ const App = () => {
   return (
     <>
       <Provider store={Store}>
+        <CoinDayChartContextProvider>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Coins" element={<Coins />} />
             <Route path="/Coins/:id" element={<DetailCoin />} />
           </Routes>
-          <Footer/>
+          <Footer />
+        </CoinDayChartContextProvider>
       </Provider>
     </>
   );
