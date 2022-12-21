@@ -104,7 +104,7 @@ const Coin = ({ data }) => {
 
                     <ContainerLabel>
                         <LabelItem>24h</LabelItem>
-                        <h3>{data.price_change_percentage_24h ? data.price_change_percentage_24h.toFixed(2) : "?"}</h3>
+                        <h3 style={{color: data.price_change_percentage_24h > 0 ? "#22C55E" : "#DC2626"}}>{data.price_change_percentage_24h ? data.price_change_percentage_24h.toFixed(2) : "?"}</h3>
                     </ContainerLabel>
 
                     <ContainerLabel>

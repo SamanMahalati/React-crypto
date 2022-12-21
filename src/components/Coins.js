@@ -13,6 +13,7 @@ import styled from 'styled-components';
 
 //Componets
 import Coin from './Coin';
+import SearchCoin from './SearchCoin';
 
 //Loading component
 import Loading from '../shared/Loading';
@@ -78,9 +79,12 @@ const Coins = () => {
         setCurrentPage(Page)
         dispatch(fetchCoins(50, Page))
     }
+
     return (
         <>
+            
             <CoinSection>
+            <SearchCoin />
                 <HeadMenu>
                     <h3>#</h3>
                     <h3>Coin</h3>

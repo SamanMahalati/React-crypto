@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState , useTransition } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 //Fetch Coin Detail From Api
 import { fetchCoin } from '../redux/CoinDetail/coinDetailAction';
@@ -256,7 +256,7 @@ const DetailCoin = () => {
     const [isPending , startTransition] = useTransition()
     const [days, setDays] = useState()
 
-    console.log(historyChartDay);
+    const navigate = useNavigate();
 
     const dispatch = useDispatch()
     const coinState = useSelector(state => state.coinDetailState)
@@ -279,7 +279,9 @@ const DetailCoin = () => {
         <Container>
             {
                 coinState.loading ? <Loading /> :
-                    coinState.error ? <h1>{coinState.error}</h1> :
+                    coinState.error ? 
+                    navigate("/NotFound")
+                    :
                         <>
                             <CoinNameBox>
                                 <h1>{coinState.coin.name}</h1>
